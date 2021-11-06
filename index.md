@@ -1,3 +1,23 @@
+## Objective
+
+## Education                                                                                      
+China Agricultural University (CAU), Beijing, China                                        09/2017-06/2021
+Major: Computer Science and Technology, GPA: 3.63/4.0, Rank: 13/62
+Degree: Bachelor of Engineering
+
+## Summary of Qualifications
+
+## Experience                                                                                 
+
+## Memberships & Affiliations
+
+## Volunteer Experience
+
+## Honors & Awards                                                                                          
+
+## Technical Skills
+
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/leaving-voider/lujiaZhong.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
