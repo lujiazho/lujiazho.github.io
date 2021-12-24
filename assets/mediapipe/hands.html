@@ -1,0 +1,121 @@
+<!-- Adapted from https://github.com/LintangWisesa/MediaPipe-in-JavaScript -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.css" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" type="text/css" href="demo.css" crossorigin="anonymous"> -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.2/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.1/hands.js" crossorigin="anonymous"></script>
+  <style>
+    html, body {margin: 0; height: 100%; overflow: hidden}
+    .input_video3{
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+    }
+    .sidenav {
+      width: 50px;
+      position: fixed;
+      z-index: 1;
+      top: 5px;
+      left: 5px;
+      overflow-x: hidden;
+      padding: 0px 0;
+    }
+    .sidenav a {
+      padding: 10px 0px 10px 0px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #000000;
+      display: block;
+    }
+    .sidenav a:hover {
+      color: #9B59B6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidenav">
+    <a class="navbar-item" href="face.html">Face</a>
+    <a class="navbar-item" href="faceMesh.html">F.Mesh</a>
+    <a class="navbar-item" href="hands.html">Hands</a>
+    <a class="navbar-item" href="pose.html">Pose</a>
+    <a class="navbar-item" href="holistic.html">Holistic</a>
+    <a class="navbar-item" href="https://lujiazho.github.io/">Return</a>
+  </div>
+  <!-- BULMA NAVBAR -->
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="face.html">
+          Face
+        </a>
+  
+        <a class="navbar-item" href="faceMesh.html">
+          Face Mesh
+        </a>
+
+        <a class="navbar-item" href="hands.html">
+          Hands
+        </a>
+
+        <a class="navbar-item" href="pose.html">
+          Pose
+        </a>
+
+        <a class="navbar-item" href="holistic.html">
+          Holistic
+        </a>
+      </div>
+    </div>
+  </nav> -->
+
+  <!-- CONTENTS -->
+  <div class="container">
+
+    <div class="columns">
+      
+      <!-- WEBCAM INPUT -->
+      <div class="column">
+        <article class="panel is-info">
+          <p class="panel-heading" style="background-color:Tomato;">
+            Original Image
+          </p>
+          <div class="panel-block">
+            <video class="input_video3"></video>
+          </div>
+        </article>
+      </div>
+
+      <!-- MEDIAPIPE OUTPUT -->
+      <div class="column">
+        <article class="panel is-info">
+          <p class="panel-heading" style="background-color:Orange;">
+            Processed Image
+          </p>
+          <div class="panel-block">
+            <canvas class="output3" width="540px" height="540px"></canvas>
+          </div>
+        </article>
+      </div>
+    </div>
+    
+    <div class="loading">
+      <div class="spinner"></div>
+    </div>
+  <div style="visibility: hidden;" class="control3">
+  </div>
+
+  <script type="text/javascript" src="./js/hands.js"></script>
+</body>
+</html>
