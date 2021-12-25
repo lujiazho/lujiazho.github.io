@@ -33,6 +33,33 @@ const faceDetection = new FaceDetection({locateFile: (file) => {
 }});
 faceDetection.onResults(onResultsFace);
 
+var constraints = { 
+  audio: false, 
+  video: { 
+    width: {ideal: 540}, 
+    height: {ideal: 540},
+    facingMode: "user"
+  } 
+}; 
+
+async function getMediaStream(constraints) {
+  try {
+    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints).then(async (mediaStream) => {
+      let video = video1;    
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = (event) => {
+        video.play();
+      };
+      // setInterval(() => {
+      //   faceDetection.send({image: video1});
+      // }, 100); 
+    });
+  } catch (err)  {    
+    console.error(err.message);   
+  }
+};
+getMediaStream(constraints);
+
 const camera = new Camera(video1, {
   onFrame: async () => {
     await faceDetection.send({image: video1});
