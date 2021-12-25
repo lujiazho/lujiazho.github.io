@@ -61,3 +61,4 @@ new ControlPanel(controlsElement1, {
       video1.classList.toggle('selfie', options.selfieMode);
       faceDetection.setOptions(options);
     });
+
