@@ -50,9 +50,9 @@ async function getMediaStream(constraints) {
       video.onloadedmetadata = (event) => {
         video.play();
       };
-      // setInterval(() => {
-      //   faceDetection.send({image: video1});
-      // }, 100); 
+      setInterval(() => {
+        faceDetection.send({image: video1});
+      }, 500); 
     });
   } catch (err)  {    
     console.error(err.message);   
@@ -60,14 +60,14 @@ async function getMediaStream(constraints) {
 };
 getMediaStream(constraints);
 
-const camera = new Camera(video1, {
-  onFrame: async () => {
-    await faceDetection.send({image: video1});
-  },
-  width: 540,
-  height: 540
-});
-camera.start();
+// const camera = new Camera(video1, {
+//   onFrame: async () => {
+//     await faceDetection.send({image: video1});
+//   },
+//   width: 540,
+//   height: 540
+// });
+// camera.start();
 
 new ControlPanel(controlsElement1, {
       selfieMode: true,
