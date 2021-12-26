@@ -101,8 +101,8 @@ var mediaStream = null;
 var constraints = { 
   audio: false, 
   video: { 
-    width: {ideal: 640}, 
-    height: {ideal: 480},
+    width: {ideal: 540}, 
+    height: {ideal: 540},
     facingMode: "environment"
   } 
 }; 
@@ -110,10 +110,10 @@ var constraints = {
 async function getMediaStream(constraints) {
   try {
     mediaStream =  await navigator.mediaDevices.getUserMedia(constraints);
-    let video = document.getElementById('cam');    
-    video.srcObject = mediaStream;
-    video.onloadedmetadata = (event) => {
-      video.play();
+    // let video = document.getElementById('cam');    
+    video1.srcObject = mediaStream;
+    video1.onloadedmetadata = (event) => {
+      video1.play();
     };
   } catch (err)  {    
     console.error(err.message);   
@@ -131,7 +131,8 @@ async function switchCamera(cameraMode) {
     }
     
     // set the video source to null
-    document.getElementById('cam').srcObject = null;
+    // document.getElementById('cam').srcObject = null;
+    video1.srcObject = null;
     
     // change "facingMode"
     constraints.video.facingMode = cameraMode;
@@ -145,23 +146,17 @@ async function switchCamera(cameraMode) {
 }
 
 function takePicture() {  
-  let canvas = document.getElementById('canvas');
-  let video = document.getElementById('cam');
-  // let photo = document.getElementById('photo');  
-  let context = canvas.getContext('2d');
+  // let canvas = document.getElementById('canvas');
+  // let video = document.getElementById('cam');
+  let photo = document.getElementById('photo');  
+  // let context = canvas.getContext('2d');
   
-  const height = video.videoHeight;
-  const width = video.videoWidth;
+  // const height = video1.videoHeight;
+  // const width = video1.videoWidth;
   
-  if (width && height) {    
-    canvas.width = width;
-    canvas.height = height;
-    context.drawImage(video, 0, 0, width, height);    
-    // var data = canvas.toDataURL('image/png');
-    // photo.setAttribute('src', data);
-  } else {
-    clearphoto();
-  }
+  canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
+  var data = canvasCtx1.toDataURL('image/png');
+  photo.setAttribute('src', data);
 }
 
 // function clearPhoto() {
