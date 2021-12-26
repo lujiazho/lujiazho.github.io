@@ -115,6 +115,7 @@ async function getMediaStream(constraints) {
     video1.onloadedmetadata = (event) => {
       video1.play();
     };
+    faceDetection.send({image: video1});
   } catch (err)  {    
     console.error(err.message);   
   }
