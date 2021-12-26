@@ -42,9 +42,13 @@ var constraints = {
   } 
 }; 
 
-async function getMediaStream(constraints) {
+// function start(video){
+//   async () => {await faceDetection.send({image: video1});}
+// }
+
+function getMediaStream(constraints) {
   try {
-    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints).then(async (mediaStream) => {
+    mediaStream = navigator.mediaDevices.getUserMedia(constraints).then((mediaStream) => {
       let video = video1;    
       video.srcObject = mediaStream;
       video.onloadedmetadata = (event) => {
@@ -53,6 +57,7 @@ async function getMediaStream(constraints) {
       setInterval(() => {
         faceDetection.send({image: video1});
       }, 500); 
+
     });
   } catch (err)  {    
     console.error(err.message);   
