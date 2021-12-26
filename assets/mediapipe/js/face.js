@@ -103,7 +103,7 @@ var constraints = {
   video: { 
     width: {ideal: 540}, 
     height: {ideal: 540},
-    facingMode: "environment"
+    facingMode: "user"
   } 
 }; 
 
@@ -148,15 +148,16 @@ async function switchCamera(cameraMode) {
 function takePicture() {  
   // let canvas = document.getElementById('canvas');
   // let video = document.getElementById('cam');
-  let photo = document.getElementById('photo');  
+  // let photo = document.getElementById('photo');  
   // let context = canvas.getContext('2d');
   
   // const height = video1.videoHeight;
   // const width = video1.videoWidth;
   
-  canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
-  var data = canvasCtx1.toDataURL('image/png');
-  photo.setAttribute('src', data);
+  // canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
+  // var data = canvasCtx1.toDataURL('image/png');
+  // photo.setAttribute('src', data);
+  faceDetection.send({image: video1});
 }
 
 // function clearPhoto() {
