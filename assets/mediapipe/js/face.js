@@ -33,35 +33,35 @@ const faceDetection = new FaceDetection({locateFile: (file) => {
 }});
 faceDetection.onResults(onResultsFace);
 
-var constraints = { 
-  audio: false, 
-  video: { 
-    width: {ideal: 540}, 
-    height: {ideal: 540},
-    facingMode: "user"
-  } 
-}; 
+// var constraints = { 
+//   audio: false, 
+//   video: { 
+//     width: {ideal: 540}, 
+//     height: {ideal: 540},
+//     facingMode: "user"
+//   } 
+// }; 
 
 
-var mediaStream = null;
-async function getMediaStream(constraints) {
-  try {
-    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints).then(async (mediaStream) => {
-      // let video = video1;    
-      video1.srcObject = mediaStream;
-      video1.onloadedmetadata = (event) => {
-        video1.play();
-      };
-      // setInterval(() => {
-      //   faceDetection.send({image: video1});
-      // }, 1000); 
+// var mediaStream = null;
+// async function getMediaStream(constraints) {
+//   try {
+//     mediaStream =  await navigator.mediaDevices.getUserMedia(constraints).then(async (mediaStream) => {
+//       // let video = video1;    
+//       video1.srcObject = mediaStream;
+//       video1.onloadedmetadata = (event) => {
+//         video1.play();
+//       };
+//       // setInterval(() => {
+//       //   faceDetection.send({image: video1});
+//       // }, 1000); 
 
-    });
-  } catch (err)  {    
-    console.error(err.message);   
-  }
-};
-getMediaStream(constraints);
+//     });
+//   } catch (err)  {    
+//     console.error(err.message);   
+//   }
+// };
+// getMediaStream(constraints);
 
 // const camera = new Camera(video1, {
 //   onFrame: async () => {
@@ -92,3 +92,100 @@ new ControlPanel(controlsElement1, {
       faceDetection.setOptions(options);
     });
 
+
+
+
+var mediaStream = null;
+
+// Prefer camera resolution nearest to 1280x720.
+var constraints = { 
+  audio: false, 
+  video: { 
+    width: {ideal: 640}, 
+    height: {ideal: 480},
+    facingMode: "environment"
+  } 
+}; 
+
+async function getMediaStream(constraints) {
+  try {
+    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints);
+    let video = document.getElementById('cam');    
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = (event) => {
+      video.play();
+    };
+  } catch (err)  {    
+    console.error(err.message);   
+  }
+};
+
+async function switchCamera(cameraMode) {  
+  try {
+    // stop the current video stream
+    if (mediaStream != null && mediaStream.active) {
+      var tracks = mediaStream.getVideoTracks();
+      tracks.forEach(track => {
+        track.stop();
+      })      
+    }
+    
+    // set the video source to null
+    document.getElementById('cam').srcObject = null;
+    
+    // change "facingMode"
+    constraints.video.facingMode = cameraMode;
+    
+    // get new media stream
+    await getMediaStream(constraints);
+  } catch (err)  {    
+    console.error(err.message); 
+    alert(err.message);
+  }
+}
+
+function takePicture() {  
+  let canvas = document.getElementById('canvas');
+  let video = document.getElementById('cam');
+  let photo = document.getElementById('photo');  
+  let context = canvas.getContext('2d');
+  
+  const height = video.videoHeight;
+  const width = video.videoWidth;
+  
+  if (width && height) {    
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(video, 0, 0, width, height);    
+    var data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+  } else {
+    clearphoto();
+  }
+}
+
+function clearPhoto() {
+  let canvas = document.getElementById('canvas');
+  let photo = document.getElementById('photo');
+  let context = canvas.getContext('2d');
+  
+  context.fillStyle = "#AAA";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  var data = canvas.toDataURL('image/png');
+  photo.setAttribute('src', data);
+}
+
+document.getElementById('switchFrontBtn').onclick = (event) => {
+  switchCamera("user");
+}
+
+document.getElementById('switchBackBtn').onclick = (event) => {  
+  switchCamera("environment");
+}
+
+document.getElementById('snapBtn').onclick = (event) => {  
+  takePicture();
+  event.preventDefault();
+}
+
+clearPhoto();

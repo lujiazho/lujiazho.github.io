@@ -98,6 +98,17 @@
     </div>
   </nav> -->
 
+  <div class="panel">
+  <button id="switchFrontBtn">Front Camera</button>
+  <button id="switchBackBtn">Back Camera</button>
+  <button id="snapBtn">Snap</button>
+</div>
+<div style="width:100%">
+  <!-- add autoplay muted playsinline for iOS -->
+  <video id="cam" autoplay muted playsinline>Not available</video>
+  <canvas id="canvas" style="display:none"></canvas>  
+  <img id="photo" alt="The screen capture will appear in this box.">  
+</div>
   <!-- CONTENTS -->
   <div class="container">
 
@@ -135,6 +146,7 @@
 
   <div style="visibility: hidden;" class="control1">
   </div>
+
 
   <script type="text/javascript" src="./js/face.js"></script>
 </body>
