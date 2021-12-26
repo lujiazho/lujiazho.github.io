@@ -152,7 +152,7 @@ async function switchCamera(cameraMode) {
   }
 }
 
-async function takePicture() {  
+function takePicture() {  
   // let canvas = document.getElementById('canvas');
   // let video = document.getElementById('cam');
   // let photo = document.getElementById('photo');  
@@ -164,7 +164,7 @@ async function takePicture() {
   canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
   // var data = canvasCtx1.toDataURL('image/png');
   // photo.setAttribute('src', data);
-  await faceDetection.send({image: video1});
+  faceDetection.send({image: video1});
 }
 
 // function clearPhoto() {
