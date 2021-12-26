@@ -86,6 +86,12 @@ new ControlPanel(controlsElement1, {
         range: [0, 1],
         step: 0.01
       }),
+      // new SourcePicker({
+      //   onFrame:
+      //       async () => {
+      //         await faceDetection.send({image: video1});
+      //       },
+      // }),
     ])
     .on(options => {
       video1.classList.toggle('selfie', options.selfieMode);
@@ -146,7 +152,7 @@ async function switchCamera(cameraMode) {
   }
 }
 
-function takePicture() {  
+async function takePicture() {  
   // let canvas = document.getElementById('canvas');
   // let video = document.getElementById('cam');
   // let photo = document.getElementById('photo');  
@@ -158,7 +164,7 @@ function takePicture() {
   // canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
   // var data = canvasCtx1.toDataURL('image/png');
   // photo.setAttribute('src', data);
-  faceDetection.send({image: video1});
+  await faceDetection.send({image: video1});
 }
 
 // function clearPhoto() {
@@ -181,8 +187,8 @@ document.getElementById('switchFrontBtn').onclick = (event) => {
 // }
 
 document.getElementById('snapBtn').onclick = (event) => {  
-  // takePicture();
-  faceDetection.send({image: video1});
+  takePicture();
+  // faceDetection.send({image: video1});
   // event.preventDefault();
 }
 
