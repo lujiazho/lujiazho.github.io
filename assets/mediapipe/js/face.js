@@ -101,95 +101,95 @@ new ControlPanel(controlsElement1, {
 
 
 
-var mediaStream = null;
+// var mediaStream = null;
 
-// Prefer camera resolution nearest to 1280x720.
-var constraints = { 
-  audio: false, 
-  video: { 
-    width: {ideal: 540}, 
-    height: {ideal: 540},
-    facingMode: "user"
-  } 
-}; 
+// // Prefer camera resolution nearest to 1280x720.
+// var constraints = { 
+//   audio: false, 
+//   video: { 
+//     width: {ideal: 540}, 
+//     height: {ideal: 540},
+//     facingMode: "user"
+//   } 
+// }; 
 
-async function getMediaStream(constraints) {
-  try {
-    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints);
-    // let video = document.getElementById('cam');    
-    video1.srcObject = mediaStream;
-    video1.onloadedmetadata = (event) => {
-      video1.play();
-    };
-    // faceDetection.send({image: video1});
-  } catch (err)  {    
-    console.error(err.message);   
-  }
-};
+// async function getMediaStream(constraints) {
+//   try {
+//     mediaStream =  await navigator.mediaDevices.getUserMedia(constraints);
+//     // let video = document.getElementById('cam');    
+//     video1.srcObject = mediaStream;
+//     video1.onloadedmetadata = (event) => {
+//       video1.play();
+//     };
+//     // faceDetection.send({image: video1});
+//   } catch (err)  {    
+//     console.error(err.message);   
+//   }
+// };
 
-async function switchCamera(cameraMode) {  
-  try {
-    // stop the current video stream
-    if (mediaStream != null && mediaStream.active) {
-      var tracks = mediaStream.getVideoTracks();
-      tracks.forEach(track => {
-        track.stop();
-      })      
-    }
+// async function switchCamera(cameraMode) {  
+//   try {
+//     // stop the current video stream
+//     if (mediaStream != null && mediaStream.active) {
+//       var tracks = mediaStream.getVideoTracks();
+//       tracks.forEach(track => {
+//         track.stop();
+//       })      
+//     }
     
-    // set the video source to null
-    // document.getElementById('cam').srcObject = null;
-    video1.srcObject = null;
+//     // set the video source to null
+//     // document.getElementById('cam').srcObject = null;
+//     video1.srcObject = null;
     
-    // change "facingMode"
-    constraints.video.facingMode = cameraMode;
+//     // change "facingMode"
+//     constraints.video.facingMode = cameraMode;
     
-    // get new media stream
-    await getMediaStream(constraints);
-  } catch (err)  {    
-    console.error(err.message); 
-    alert(err.message);
-  }
-}
-
-function takePicture() {  
-  // let canvas = document.getElementById('canvas');
-  // let video = document.getElementById('cam');
-  // let photo = document.getElementById('photo');  
-  // let context = canvas.getContext('2d');
-  
-  // const height = video1.videoHeight;
-  // const width = video1.videoWidth;
-  
-  canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
-  // var data = canvasCtx1.toDataURL('image/png');
-  // photo.setAttribute('src', data);
-  faceDetection.send({image: video1});
-}
-
-// function clearPhoto() {
-//   let canvas = document.getElementById('canvas');
-//   let photo = document.getElementById('photo');
-//   let context = canvas.getContext('2d');
-  
-//   context.fillStyle = "#AAA";
-//   context.fillRect(0, 0, canvas.width, canvas.height);
-//   var data = canvas.toDataURL('image/png');
-//   photo.setAttribute('src', data);
+//     // get new media stream
+//     await getMediaStream(constraints);
+//   } catch (err)  {    
+//     console.error(err.message); 
+//     alert(err.message);
+//   }
 // }
 
-document.getElementById('switchFrontBtn').onclick = (event) => {
-  switchCamera("user");
-}
-
-// document.getElementById('switchBackBtn').onclick = (event) => {  
-//   switchCamera("environment");
+// function takePicture() {  
+//   // let canvas = document.getElementById('canvas');
+//   // let video = document.getElementById('cam');
+//   // let photo = document.getElementById('photo');  
+//   // let context = canvas.getContext('2d');
+  
+//   // const height = video1.videoHeight;
+//   // const width = video1.videoWidth;
+  
+//   canvasCtx1.drawImage(video1, 0, 0, 540, 540);    
+//   // var data = canvasCtx1.toDataURL('image/png');
+//   // photo.setAttribute('src', data);
+//   faceDetection.send({image: video1});
 // }
 
-document.getElementById('snapBtn').onclick = (event) => {  
-  takePicture();
-  // faceDetection.send({image: video1});
-  // event.preventDefault();
-}
+// // function clearPhoto() {
+// //   let canvas = document.getElementById('canvas');
+// //   let photo = document.getElementById('photo');
+// //   let context = canvas.getContext('2d');
+  
+// //   context.fillStyle = "#AAA";
+// //   context.fillRect(0, 0, canvas.width, canvas.height);
+// //   var data = canvas.toDataURL('image/png');
+// //   photo.setAttribute('src', data);
+// // }
 
-// clearPhoto();
+// document.getElementById('switchFrontBtn').onclick = (event) => {
+//   switchCamera("user");
+// }
+
+// // document.getElementById('switchBackBtn').onclick = (event) => {  
+// //   switchCamera("environment");
+// // }
+
+// document.getElementById('snapBtn').onclick = (event) => {  
+//   takePicture();
+//   // faceDetection.send({image: video1});
+//   // event.preventDefault();
+// }
+
+// // clearPhoto();
