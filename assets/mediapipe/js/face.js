@@ -180,8 +180,9 @@ document.getElementById('switchFrontBtn').onclick = (event) => {
 // }
 
 document.getElementById('snapBtn').onclick = (event) => {  
-  takePicture();
-  event.preventDefault();
+  // takePicture();
+  faceDetection.send({image: video1});
+  // event.preventDefault();
 }
 
 // clearPhoto();
