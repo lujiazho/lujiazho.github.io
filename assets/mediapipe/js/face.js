@@ -63,14 +63,14 @@ faceDetection.onResults(onResultsFace);
 // };
 // getMediaStream(constraints);
 
-// const camera = new Camera(video1, {
-//   onFrame: async () => {
-//     await faceDetection.send({image: video1});
-//   },
-//   width: 540,
-//   height: 540
-// });
-// camera.start();
+const camera = new Camera(video1, {
+  onFrame: async () => {
+    await faceDetection.send({image: video1});
+  },
+  width: 540,
+  height: 540
+});
+camera.start();
 
 new ControlPanel(controlsElement1, {
       selfieMode: true,
@@ -88,7 +88,7 @@ new ControlPanel(controlsElement1, {
       }),
       // new SourcePicker({
       //   onFrame:
-      //       async () => {
+      //       async (input) => {
       //         await faceDetection.send({image: video1});
       //       },
       // }),
@@ -121,7 +121,7 @@ async function getMediaStream(constraints) {
     video1.onloadedmetadata = (event) => {
       video1.play();
     };
-    faceDetection.send({image: video1});
+    // faceDetection.send({image: video1});
   } catch (err)  {    
     console.error(err.message);   
   }
