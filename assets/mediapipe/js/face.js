@@ -42,21 +42,19 @@ var constraints = {
   } 
 }; 
 
-// function start(video){
-//   async () => {await faceDetection.send({image: video1});}
-// }
 
-function getMediaStream(constraints) {
+var mediaStream = null;
+async function getMediaStream(constraints) {
   try {
-    mediaStream = navigator.mediaDevices.getUserMedia(constraints).then((mediaStream) => {
-      let video = video1;    
-      video.srcObject = mediaStream;
-      video.onloadedmetadata = (event) => {
-        video.play();
+    mediaStream =  await navigator.mediaDevices.getUserMedia(constraints).then(async (mediaStream) => {
+      // let video = video1;    
+      video1.srcObject = mediaStream;
+      video1.onloadedmetadata = (event) => {
+        video1.play();
       };
-      setInterval(() => {
-        faceDetection.send({image: video1});
-      }, 500); 
+      // setInterval(() => {
+      //   faceDetection.send({image: video1});
+      // }, 1000); 
 
     });
   } catch (err)  {    
