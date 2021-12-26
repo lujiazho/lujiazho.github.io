@@ -29,7 +29,8 @@ function onResultsFace(results) {
 }
 
 const faceDetection = new FaceDetection({locateFile: (file) => {
-  return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
+  // return `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection@0.0/${file}`;
+  return `./face/${file}`;
 }});
 faceDetection.onResults(onResultsFace);
 
