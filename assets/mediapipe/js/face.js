@@ -147,7 +147,7 @@ async function switchCamera(cameraMode) {
 function takePicture() {  
   let canvas = document.getElementById('canvas');
   let video = document.getElementById('cam');
-  let photo = document.getElementById('photo');  
+  // let photo = document.getElementById('photo');  
   let context = canvas.getContext('2d');
   
   const height = video.videoHeight;
@@ -157,35 +157,35 @@ function takePicture() {
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);    
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    // var data = canvas.toDataURL('image/png');
+    // photo.setAttribute('src', data);
   } else {
     clearphoto();
   }
 }
 
-function clearPhoto() {
-  let canvas = document.getElementById('canvas');
-  let photo = document.getElementById('photo');
-  let context = canvas.getContext('2d');
+// function clearPhoto() {
+//   let canvas = document.getElementById('canvas');
+//   let photo = document.getElementById('photo');
+//   let context = canvas.getContext('2d');
   
-  context.fillStyle = "#AAA";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  var data = canvas.toDataURL('image/png');
-  photo.setAttribute('src', data);
-}
+//   context.fillStyle = "#AAA";
+//   context.fillRect(0, 0, canvas.width, canvas.height);
+//   var data = canvas.toDataURL('image/png');
+//   photo.setAttribute('src', data);
+// }
 
 document.getElementById('switchFrontBtn').onclick = (event) => {
   switchCamera("user");
 }
 
-document.getElementById('switchBackBtn').onclick = (event) => {  
-  switchCamera("environment");
-}
+// document.getElementById('switchBackBtn').onclick = (event) => {  
+//   switchCamera("environment");
+// }
 
 document.getElementById('snapBtn').onclick = (event) => {  
   takePicture();
   event.preventDefault();
 }
 
-clearPhoto();
+// clearPhoto();
