@@ -4,6 +4,10 @@ const controlsElement1 = document.getElementsByClassName('control1')[0];
 const canvasCtx1 = out1.getContext('2d');
 const fpsControl = new FPS();
 
+var audio = document.createElement("audio")
+document.body.appendChild(audio);
+audio.src = "./warning.mp3"
+
 const spinner = document.querySelector('.loading');
 spinner.ontransitionend = () => {
   spinner.style.display = 'none';
@@ -24,6 +28,7 @@ function onResultsFace(results) {
       color: 'red',
       radius: 5,
     });
+    audio.play()
   }
   canvasCtx1.restore();
 }
@@ -193,3 +198,8 @@ new ControlPanel(controlsElement1, {
 // }
 
 // // clearPhoto();
+
+
+// document.body.addEventListener("mousemove", function () {
+//     audio.play()
+// })
