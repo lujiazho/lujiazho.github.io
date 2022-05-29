@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>A Mini Machine Learning Library</title>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Page Header-->
+        <div class="container position-relative px-8 px-lg-9">
+            <div class="row gx-8 gx-lg-9 justify-content-center">
+                <div class="col-md-10 col-lg-9 col-xl-8">
+                    <div class="post-heading">
+                        <h2>A Mini Machine Learning Library with Detailed Math Derivation</h2>
+                        <div class="text-muted">
+                            <a href="https://lujiazho.github.io/">
+                                <img src="https://media-exp1.licdn.com/dms/image/D4E03AQHCoK8sRewTfA/profile-displayphoto-shrink_400_400/0/1638936766650?e=1644451200&v=beta&t=HwdcSlUCk9dVK1cb8s9aXsmRgmi1xPT-imYy1HNwsMk" class="rounded-circle" alt="" width="48" height="48">
+                                <span class="meta" style="color:#585FAF;padding: 0px 2px;">
+                                    Lujia Zhong
+                                </span>
+                            </a>
+                            <span class="meta" style="padding: 0px 2px;">
+                                December 24, 2021
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-8 px-lg-9">
+                <div class="row gx-8 gx-lg-9 justify-content-center">
+                    <div class="col-md-10 col-lg-9 col-xl-8">
+                        <img class="img-fluid" src="imgs/miniML.jpg" alt="" style="display:block; margin-left:auto; margin-right:auto;"/>
+
+                        <h2 class="section-heading">🛵Motivation</h2>
+                        <p>Even though there are a lot of open-source tools out there, I still don’t really understand the mechanism and math behind them until I reinvent the wheel. The process of doing that can help me have a better grasp of the knowledge and prove to myself that I do understand it.</p>
+
+                        <p>Learning these algorithms from those powerful open-source machine learning tools like scikit-learn is not practically possible for beginners, because they have complex library dependency and class inheritance relationships. Therefore, to help people and to help myself as well, I make one. Well, more precisely, a mini one.</p>
+
+                        <!-- <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote> -->
+
+                        <h2 class="section-heading">🪐Introduction</h2>
+                        <p>This is a mini machine learning library written with the NumPy library. Before doing that, I actually already finished a Master's course on machine learning at USC, which makes me have the basic knowledge and cognition. But some deep details were not mentioned in class such as SVM (SVC & SVR). Only SVC was mentioned and the math derivation just includes primal and dual representation, which is not enough to really code one. And SVR was the same case. So I finally decided to code all the algorithms mentioned in class during the summer break. So, yes, here it comes.</p>
+
+                        <p>The algorithms in this mini machine learning library include:</p>
+                        <ul>
+                            <li><i>Support Vector Classifier (SVC)</i></li>
+                            <li><i>Support Vector Regressor (SVR)</i></li>
+                            <li><i>Ridge Regression</i></li>
+                            <li><i>Nearest Mean</i></li>
+                            <li><i>K-Means</i></li>
+                            <li><i>K-Nearest Neighbors (KNN)</i></li>
+                            <li><i>Perceptron Learning</i></li>
+                            <li><i>MSE techniques (classification&Regression)</i></li>
+                            <li><i>Density Estimation (Non-parametric & parametric)</i></li>
+                            <li><i>ANN</i></li>
+                            <li><i>PCA</i></li>
+                        </ul>
+
+                        <p>🤔More specifically:</p>
+
+                        <p><b>SVM.</b> My version of SVC supports nonlinear classification, soft margin, multi-classification, high-dimension data, etc. All computation is written as matrix operation with NumPy, which makes running fast. SVR supports nonlinear regression and high-dimension data regression as well.</p>
+                        
+                        <p><b>ANN.</b> This algorithm is organized as a multi-level class. The bottom is the Node class, which includes the basic components such as inputs, outputs, values, gradients, and forward & backward operations. Upon that, various classes are created, including Placeholder, Add, Linear, Sigmoid, MSE, etc. With these, a basic regression and classification model could be built.</p>
+
+                        <p><b>MSE techniques.</b> This is an aggregation of 2 similar models. One is for classification, and another is for regression. Both classification and regression models are implemented with the Algebraic method and Gradient Descent method, which makes it composed of 4 somewhat different algorithms.</p>
+
+                        <p><b>Density Estimation.</b> Both parametric and non-parametric ways are implemented. The parametric method includes a regression version and classification version with Maximum Likelihood Estimation (MLE). The non-parametric method involves both Kernel Density Estimation (KDE) and K-Nearest Neighbors (KNN) implementations.</p>
+
+                        <h2 class="section-heading">👨🏻‍💻Comments</h2>
+                        <p>Of course, this little library cannot compete with any open-source tools like scikit-learn, but it’s better to understand the ins and outs of these ML concepts and algorithms with this relatively simpler implementation because there is relatively less code and inheritance between objects.</p>
+
+                        <p>Admittedly, sometimes my version of these algorithms cannot achieve the same performance and speed as scikit-learn, which I don’t know why because I actually write all math with NumPy’s matrix operations which should be fast. But it’s still not as fast as scikit-learn, such as using SVC as a multi-classifier in the experiment of digits recognizer.</p>
+
+                        <p>If you are good at this and have any suggestions, please contact me! If you are a machine learning beginner, I hope this helps!</p>
+
+                        <p>Repo link (All codes, math, and tutorials):</p>
+
+                        <p><a href="https://github.com/lujiazho/MachineLearningPlayground">
+                            <u>https://github.com/lujiazho/MachineLearningPlayground</u>
+                        </a></p>
+
+                        <!-- <p>
+                            Placeholder text by
+                            <a href="http://spaceipsum.com/">Space Ipsum</a>
+                            &middot; Images by
+                            <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/lujia-zhong-7b190a201/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <!-- <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li> -->
+                            <li class="list-inline-item">
+                                <a href="https://github.com/lujiazho">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">&copy; 2021 Lujia's personal website</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
